@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lợi ích | VFD - IOT SMARTLINK</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#0B1120',
+                        secondary: '#1E293B',
+                        accent: '#007BFF',
+                        accentHover: '#0056b3',
+                        lightGray: '#F3F4F6',
+                        darkText: '#1a202c'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #ffffff, #60A5FA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+
+<body class="font-sans antialiased text-darkText bg-white">
+
+    <!-- Header / Navigation Bar -->
+    <header
+        class="fixed w-full z-50 transition-all duration-300 bg-primary/95 backdrop-blur-sm border-b border-white/10"
+        id="header">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer">
+                    <span class="font-extrabold text-2xl tracking-tight text-white">VFD<span
+                            class="text-accent">-</span>IOT <span class="font-light">SMARTLINK</span></span>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="vfd_iot_smartlink.html"
+                        class="text-gray-300 hover:text-white transition duration-200 text-sm font-medium">Trang chủ</a>
+                    <a href="solution.html"
+                        class="text-gray-300 hover:text-white transition duration-200 text-sm font-medium">Giải pháp</a>
+                    <a href="features.html"
+                        class="text-gray-300 hover:text-white transition duration-200 text-sm font-medium">Tính năng</a>
+                    <a href="projects.html"
+                        class="text-gray-300 hover:text-white transition duration-200 text-sm font-medium">Dự án</a>
+                    <a href="benefits.html"
+                        class="text-white hover:text-accent transition duration-200 text-sm font-medium">Lợi ích</a>
+                    <a href="news.html"
+                        class="text-gray-300 hover:text-white transition duration-200 text-sm font-medium">Tin tức</a>
+                </nav>
+
+                <!-- CTA Button -->
+                <div class="hidden md:flex items-center">
+                    <a href="#contact"
+                        class="bg-accent hover:bg-accentHover text-white px-6 py-2.5 rounded-full font-semibold transition duration-300 shadow-lg shadow-accent/30 text-sm">LIÊN
+                        HỆ TƯ VẤN</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-white hover:text-accent focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden bg-primary/95 border-b border-white/10 px-4 pt-2 pb-4 space-y-2">
+            <a href="vfd_iot_smartlink.html" class="block text-gray-300 hover:text-white py-2 text-base font-medium">Trang chủ</a>
+            <a href="solution.html" class="block text-gray-300 hover:text-white py-2 text-base font-medium">Giải pháp</a>
+            <a href="features.html" class="block text-gray-300 hover:text-white py-2 text-base font-medium">Tính năng</a>
+            <a href="projects.html" class="block text-gray-300 hover:text-white py-2 text-base font-medium">Dự án</a>
+            <a href="benefits.html" class="block text-white py-2 text-base font-medium">Lợi ích</a>
+            <a href="news.html" class="block text-gray-300 hover:text-white py-2 text-base font-medium">Tin tức</a>
+            <a href="#contact" class="block bg-accent text-white px-4 py-2 rounded-full font-semibold text-center text-sm mt-4">LIÊN HỆ TƯ VẤN</a>
+        </div>
+    </header>
+
+    <!-- Subpage Header Banner -->
+    <section class="relative pt-32 pb-16 bg-primary overflow-hidden">
+        <!-- Background decoration -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+            <div class="absolute w-96 h-96 bg-accent/15 rounded-full blur-3xl -top-20 -left-20"></div>
+            <div class="absolute w-[30rem] h-[30rem] bg-blue-600/5 rounded-full blur-3xl bottom-0 right-0"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <h1 class="text-3xl md:text-5xl font-extrabold text-white leading-tight mb-4 tracking-tight">
+                LỢI ÍCH MANG LẠI
+            </h1>
+            <div class="w-20 h-1 bg-accent mx-auto mb-4 rounded"></div>
+            <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+                Giải pháp giúp doanh nghiệp cắt giảm chi phí và nâng cao hiệu suất vận hành.
+            </p>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Benefit Card 1 -->
+                <div class="bg-lightGray rounded-3xl p-8 border border-gray-200 shadow-sm hover:shadow-xl transition duration-300 flex flex-col items-center text-center">
+                    <div class="w-16 h-16 bg-white rounded-2xl shadow-md flex items-center justify-center text-accent mb-6">
+                        <i class="fas fa-tools text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-primary mb-4">TỐI ƯU HÓA BẢO TRÌ</h3>
+                    <p class="text-gray-600 leading-relaxed text-sm">
+                        Giảm thời gian dừng máy và sự cố. Hệ thống phân tích hoạt động liên tục giúp phát hiện sớm các dấu hiệu quá tải, lệch pha hoặc quá nhiệt để bảo trì kịp thời.
+                    </p>
+                </div>
+
+                <!-- Benefit Card 2 -->
+                <div class="bg-lightGray rounded-3xl p-8 border border-gray-200 shadow-sm hover:shadow-xl transition duration-300 flex flex-col items-center text-center">
+                    <div class="w-16 h-16 bg-white rounded-2xl shadow-md flex items-center justify-center text-accent mb-6">
+                        <i class="fas fa-piggy-bank text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-primary mb-4">TIẾT KIỆM CHI PHÍ</h3>
+                    <p class="text-gray-600 leading-relaxed text-sm">
+                        Tiết kiệm chi phí vận hành và bảo trì. Giảm thiểu chi phí nhân sự tuần tra hiện trường và chi phí sửa chữa khẩn cấp nhờ chẩn đoán lỗi chính xác qua mạng.
+                    </p>
+                </div>
+
+                <!-- Benefit Card 3 -->
+                <div class="bg-lightGray rounded-3xl p-8 border border-gray-200 shadow-sm hover:shadow-xl transition duration-300 flex flex-col items-center text-center">
+                    <div class="w-16 h-16 bg-white rounded-2xl shadow-md flex items-center justify-center text-accent mb-6">
+                        <i class="fas fa-leaf text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-primary mb-4">HIỆU QUẢ NĂNG LƯỢNG</h3>
+                    <p class="text-gray-600 leading-relaxed text-sm">
+                        Tối ưu hiệu suất, tiết kiệm năng lượng. Theo dõi biểu đồ tiêu thụ điện năng thực tế để điều chỉnh tần số hoạt động phù hợp với tải thực tế của hệ thống.
+                    </p>
+                </div>
+
+                <!-- Benefit Card 4 -->
+                <div class="bg-lightGray rounded-3xl p-8 border border-gray-200 shadow-sm hover:shadow-xl transition duration-300 flex flex-col items-center text-center">
+                    <div class="w-16 h-16 bg-white rounded-2xl shadow-md flex items-center justify-center text-accent mb-6">
+                        <i class="fas fa-network-wired text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-primary mb-4">QUẢN LÝ TẬP TRUNG</h3>
+                    <p class="text-gray-600 leading-relaxed text-sm">
+                        Quản lý tập trung, dễ dàng mở rộng. Kết nối hàng ngàn biến tần của nhiều nhà máy khác nhau về một trang dashboard quản lý tập trung duy nhất trực quan.
+                    </p>
+                </div>
+
+                <!-- Benefit Card 5 -->
+                <div class="bg-lightGray rounded-3xl p-8 border border-gray-200 shadow-sm hover:shadow-xl transition duration-300 flex flex-col items-center text-center lg:col-span-1 md:col-span-2 md:max-w-md md:mx-auto lg:max-w-none">
+                    <div class="w-16 h-16 bg-white rounded-2xl shadow-md flex items-center justify-center text-accent mb-6">
+                        <i class="fas fa-lightbulb text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-primary mb-4">QUYẾT ĐỊNH THÔNG MINH</h3>
+                    <p class="text-gray-600 leading-relaxed text-sm">
+                        Ra quyết định nhanh dựa trên dữ liệu. Xuất báo cáo hiệu suất tự động giúp ban lãnh đạo dễ dàng đưa ra kế hoạch nâng cấp và tối ưu hóa hệ thống hợp lý.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Banner -->
+    <section class="py-24 bg-primary relative overflow-hidden">
+        <div
+            class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')] bg-cover bg-center opacity-10 mix-blend-overlay">
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div
+                class="bg-gradient-to-r from-blue-900/80 to-primary/80 border border-white/10 rounded-3xl p-10 md:p-16 flex flex-col lg:flex-row items-center justify-between backdrop-blur-md shadow-2xl">
+                <div class="mb-8 lg:mb-0 lg:mr-8 text-center lg:text-left">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">SẴN SÀNG CHUYỂN ĐỔI SỐ CÙNG <span
+                            class="text-accent">VFD - IOT SMARTLINK?</span></h2>
+                    <p class="text-gray-300 text-lg max-w-2xl">Kết nối ngay hôm nay để nhận tư vấn chuyên sâu và trải
+                        nghiệm demo giải pháp quản lý biến tần thông minh.</p>
+                </div>
+                <div class="flex-shrink-0">
+                    <a href="#contact"
+                        class="inline-block bg-accent hover:bg-accentHover text-white px-10 py-4 rounded-full font-bold transition duration-300 shadow-[0_0_20px_rgba(0,123,255,0.4)] hover:shadow-[0_0_30px_rgba(0,123,255,0.6)] text-lg whitespace-nowrap transform hover:-translate-y-1">
+                        LIÊN HỆ TƯ VẤN NGAY
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-[#050810] pt-20 pb-10 border-t border-white/10 text-gray-400">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <!-- Column 1: Company Info -->
+                <div class="lg:col-span-2">
+                    <div class="font-extrabold text-2xl tracking-tight text-white mb-6">VFD<span
+                            class="text-accent">-</span>IOT <span class="font-light">SMARTLINK</span></div>
+                    <h4 class="text-white font-bold mb-4">CÔNG TY TNHH SMARTLINK TECH</h4>
+                    <p class="mb-6 text-sm leading-relaxed max-w-md">Tiên phong cung cấp các giải pháp IoT công nghiệp,
+                        giúp doanh nghiệp số hóa và tối ưu hóa hệ thống vận hành.</p>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 w-6 text-accent"></i>
+                            <span>Tòa nhà Innovation, Khu Công Nghệ Cao, TP. Thủ Đức, TP. Hồ Chí Minh</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone w-6 text-accent"></i>
+                            <span>1900 1234 56</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope w-6 text-accent"></i>
+                            <span>contact@smartlink-iot.vn</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-globe w-6 text-accent"></i>
+                            <span>www.smartlink-iot.vn</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Column 2: Quick Links -->
+                <div>
+                    <h4 class="text-white font-bold mb-6 uppercase tracking-wider">LIÊN KẾT NHANH</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="vfd_iot_smartlink.html" class="hover:text-accent transition flex items-center"><i
+                                    class="fas fa-angle-right mr-2 text-xs"></i> Trang chủ</a></li>
+                        <li><a href="solution.html" class="hover:text-accent transition flex items-center"><i
+                                    class="fas fa-angle-right mr-2 text-xs"></i> Giải pháp</a></li>
+                        <li><a href="features.html" class="hover:text-accent transition flex items-center"><i
+                                    class="fas fa-angle-right mr-2 text-xs"></i> Tính năng nổi bật</a></li>
+                        <li><a href="projects.html" class="hover:text-accent transition flex items-center"><i
+                                    class="fas fa-angle-right mr-2 text-xs"></i> Dự án tiêu biểu</a></li>
+                        <li><a href="benefits.html" class="hover:text-accent transition flex items-center"><i
+                                    class="fas fa-angle-right mr-2 text-xs"></i> Lợi ích</a></li>
+                        <li><a href="news.html" class="hover:text-accent transition flex items-center"><i
+                                    class="fas fa-angle-right mr-2 text-xs"></i> Tin tức & Sự kiện</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Social Media -->
+                <div>
+                    <h4 class="text-white font-bold mb-6 uppercase tracking-wider">THEO DÕI CHÚNG TÔI</h4>
+                    <p class="text-sm mb-6">Kết nối với chúng tôi qua các nền tảng mạng xã hội.</p>
+                    <div class="flex space-x-4">
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-accent transition transform hover:scale-110">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-accent transition transform hover:scale-110">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-red-600 transition transform hover:scale-110">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 text-sm flex flex-col md:flex-row justify-between items-center">
+                <p>&copy; 2026 SmartLink Tech. All rights reserved.</p>
+                <div class="mt-4 md:mt-0 space-x-6">
+                    <a href="#" class="hover:text-white transition">Chính sách bảo mật</a>
+                    <a href="#" class="hover:text-white transition">Điều khoản sử dụng</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-lg', 'bg-primary');
+                header.classList.remove('bg-primary/95');
+                header.classList.replace('h-20', 'h-16');
+            } else {
+                header.classList.remove('shadow-lg', 'bg-primary');
+                header.classList.add('bg-primary/95');
+                header.classList.replace('h-16', 'h-20');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+    </script>
+</body>
+
+</html>

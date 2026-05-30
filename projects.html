@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dự án | VFD - IOT SMARTLINK</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#0B1120',
+                        secondary: '#1E293B',
+                        accent: '#007BFF',
+                        accentHover: '#0056b3',
+                        lightGray: '#F3F4F6',
+                        darkText: '#1a202c'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #ffffff, #60A5FA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* ── Project cards: dark high-tech aesthetic ── */
+        .project-card {
+            background: linear-gradient(145deg, #0f1a2e, #1a2744);
+            border: 1px solid rgba(0, 123, 255, 0.18);
+            border-radius: 1rem;
+            /* overflow removed from root so card body text is never clipped */
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 0 32px rgba(0, 123, 255, 0.28), 0 16px 40px rgba(0,0,0,0.5);
+            border-color: rgba(0, 123, 255, 0.5);
+        }
+        .project-card .img-wrap {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 1rem 1rem 0 0;
+            flex-shrink: 0;
+            background-color: #0d1b30; /* dark bg in case img is slow to load */
+        }
+        .project-card .img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.7s ease;
+            display: block;
+        }
+        .project-card:hover .img-wrap img {
+            transform: scale(1.07);
+        }
+        /* neon line accent at top of each card */
+        .project-card::before {
+            content: '';
+            display: block;
+            height: 2px;
+            border-radius: 1rem 1rem 0 0;
+            background: linear-gradient(90deg, transparent, #007BFF, transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+            flex-shrink: 0;
+        }
+        .project-card:hover::before { opacity: 1; }
+        /* bottom gradient overlay on image */
+        .project-card .img-wrap::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(11,17,32,0.85) 0%, transparent 55%);
+            pointer-events: none;
+        }
+        .project-card .card-body {
+            padding: 1.4rem 1.5rem 1.6rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .project-card h3 {
+            color: #e2eaf8;
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.6rem;
+        }
+        .project-card p {
+            color: #7e9cc0;
+            font-size: 0.83rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            flex: 1; /* push the link to the bottom */
+        }
+        .project-card a.detail-link {
+            color: #60A5FA;
+            font-size: 0.82rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: gap 0.2s, color 0.2s;
+            margin-top: auto;
+        }
+        .project-card a.detail-link:hover { color: #93C5FD; gap: 10px; }
+        /* Production line card: CSS background fallback in case img fails */
+        .img-wrap.production-line-wrap {
+            background-image: url('production_line.png');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+
+<body class="font-sans antialiased text-darkText bg-white">
+
+    <!-- Header / Navigation Bar -->
+    <header
+        class="fixed w-full z-50 transition-all duration-300 bg-primary/95 backdrop-blur-sm border-b border-white/10"
+        id="header">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer">
+                    <span class="font-extrabold text-2xl tracking-tight text-white">VFD<span
+                            class="text-accent">-</span>IOT <span class="font-light">SMARTLINK</span></span>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="vfd_iot_smartlink.html"
+                        class="text-gray-300 hover:text-white transition duration-200 text-sm font-medium">Trang chủ</a>
+                    <a href="solution.html"
+                        class="text-gray-300 hover:text-white transition duration-200 text-sm font-medium">Giải pháp</a>
+                    <a href="features.html"
+                        class="text-gray-300 hover:text-white transition duration-200 text-sm font-medium">Tính năng</a>
+                    <a href="projects.html"
+                        class="text-white hover:text-accent transition duration-200 text-sm font-medium">Dự án</a>
+                    <a href="benefits.html"
+                        class="text-gray-300 hover:text-white transition duration-200 text-sm font-medium">Lợi ích</a>
+                    <a href="news.html"
+                        class="text-gray-300 hover:text-white transition duration-200 text-sm font-medium">Tin tức</a>
+                </nav>
+
+                <!-- CTA Button -->
+                <div class="hidden md:flex items-center">
+                    <a href="#contact"
+                        class="bg-accent hover:bg-accentHover text-white px-6 py-2.5 rounded-full font-semibold transition duration-300 shadow-lg shadow-accent/30 text-sm">LIÊN
+                        HỆ TƯ VẤN</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-white hover:text-accent focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden bg-primary/95 border-b border-white/10 px-4 pt-2 pb-4 space-y-2">
+            <a href="vfd_iot_smartlink.html" class="block text-gray-300 hover:text-white py-2 text-base font-medium">Trang chủ</a>
+            <a href="solution.html" class="block text-gray-300 hover:text-white py-2 text-base font-medium">Giải pháp</a>
+            <a href="features.html" class="block text-gray-300 hover:text-white py-2 text-base font-medium">Tính năng</a>
+            <a href="projects.html" class="block text-white py-2 text-base font-medium">Dự án</a>
+            <a href="benefits.html" class="block text-gray-300 hover:text-white py-2 text-base font-medium">Lợi ích</a>
+            <a href="news.html" class="block text-gray-300 hover:text-white py-2 text-base font-medium">Tin tức</a>
+            <a href="#contact" class="block bg-accent text-white px-4 py-2 rounded-full font-semibold text-center text-sm mt-4">LIÊN HỆ TƯ VẤN</a>
+        </div>
+    </header>
+
+    <!-- Subpage Header Banner -->
+    <section class="relative pt-32 pb-16 bg-primary overflow-hidden">
+        <!-- Background decoration -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+            <div class="absolute w-96 h-96 bg-accent/15 rounded-full blur-3xl -top-20 -left-20"></div>
+            <div class="absolute w-[30rem] h-[30rem] bg-blue-600/5 rounded-full blur-3xl bottom-0 right-0"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <h1 class="text-3xl md:text-5xl font-extrabold text-white leading-tight mb-4 tracking-tight">
+                DỰ ÁN TIÊU BIỂU
+            </h1>
+            <div class="w-20 h-1 bg-accent mx-auto mb-4 rounded"></div>
+            <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+                Những công trình thực tế chứng minh hiệu quả và độ tin cậy của SmartLink.
+            </p>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 bg-primary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 xl:grid-cols-4 gap-8">
+                <!-- Left/Center Area: 3 Image Cards -->
+                <div class="xl:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                    <!-- Project 1: Water Pump System -->
+                    <div class="project-card group">
+                        <div class="img-wrap">
+                            <img src="https://images.unsplash.com/photo-1542396601-dca920ea2807?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                alt="Hệ thống bơm nước">
+                        </div>
+                        <div class="card-body">
+                            <h3>HỆ THỐNG BƠM CẤP NƯỚC</h3>
+                            <p>Giám sát và điều khiển 20+ biến tần tại trạm bơm cấp nước thành phố, đảm bảo áp suất ổn định.</p>
+                            <a href="#" class="detail-link">
+                                Xem chi tiết <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: HVAC -->
+                    <div class="project-card group">
+                        <div class="img-wrap">
+                            <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                alt="Hệ thống HVAC">
+                        </div>
+                        <div class="card-body">
+                            <h3>HỆ THỐNG HVAC</h3>
+                            <p>Giám sát hệ thống HVAC cho tòa nhà, tối ưu hóa hiệu suất và tiết kiệm năng lượng làm mát.</p>
+                            <a href="#" class="detail-link">
+                                Xem chi tiết <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Project 3: Production Line -->
+                    <div class="project-card group">
+                        <div class="img-wrap production-line-wrap">
+                            <img src="production_line.png"
+                                alt="Dây chuyền sản xuất tự động hóa với robot công nghiệp và bảng điều khiển biến tần"
+                                onerror="this.style.display='none'">
+                        </div>
+                        <div class="card-body">
+                            <h3>DÂY CHUYỀN SẢN XUẤT</h3>
+                            <p>Giám sát và điều khiển biến tần đồng bộ cho dây chuyền sản xuất liên tục trong nhà máy.</p>
+                            <a href="#" class="detail-link">
+                                Xem chi tiết <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Right Area: Stat Card -->
+                <div
+                    class="bg-accent rounded-2xl p-8 text-white flex flex-col justify-center shadow-xl xl:col-span-1 relative overflow-hidden">
+                    <div
+                        class="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-white opacity-10 rounded-full blur-2xl">
+                    </div>
+                    <div class="space-y-10 relative z-10">
+                        <div class="text-center transform hover:scale-105 transition-transform">
+                            <div class="text-5xl font-extrabold mb-2">50+</div>
+                            <div class="text-blue-100 font-medium text-sm uppercase tracking-wider">Dự án đã triển khai
+                            </div>
+                        </div>
+                        <div class="w-16 h-px bg-white/30 mx-auto"></div>
+                        <div class="text-center transform hover:scale-105 transition-transform">
+                            <div class="text-5xl font-extrabold mb-2">1000+</div>
+                            <div class="text-blue-100 font-medium text-sm uppercase tracking-wider">Thiết bị kết nối
+                            </div>
+                        </div>
+                        <div class="w-16 h-px bg-white/30 mx-auto"></div>
+                        <div class="text-center transform hover:scale-105 transition-transform">
+                            <div class="text-5xl font-extrabold mb-2">98%</div>
+                            <div class="text-blue-100 font-medium text-sm uppercase tracking-wider">Khách hài lòng</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Banner -->
+    <section class="py-24 bg-primary relative overflow-hidden">
+        <div
+            class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')] bg-cover bg-center opacity-10 mix-blend-overlay">
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div
+                class="bg-gradient-to-r from-blue-900/80 to-primary/80 border border-white/10 rounded-3xl p-10 md:p-16 flex flex-col lg:flex-row items-center justify-between backdrop-blur-md shadow-2xl">
+                <div class="mb-8 lg:mb-0 lg:mr-8 text-center lg:text-left">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">SẴN SÀNG CHUYỂN ĐỔI SỐ CÙNG <span
+                            class="text-accent">VFD - IOT SMARTLINK?</span></h2>
+                    <p class="text-gray-300 text-lg max-w-2xl">Kết nối ngay hôm nay để nhận tư vấn chuyên sâu và trải
+                        nghiệm demo giải pháp quản lý biến tần thông minh.</p>
+                </div>
+                <div class="flex-shrink-0">
+                    <a href="#contact"
+                        class="inline-block bg-accent hover:bg-accentHover text-white px-10 py-4 rounded-full font-bold transition duration-300 shadow-[0_0_20px_rgba(0,123,255,0.4)] hover:shadow-[0_0_30px_rgba(0,123,255,0.6)] text-lg whitespace-nowrap transform hover:-translate-y-1">
+                        LIÊN HỆ TƯ VẤN NGAY
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-[#050810] pt-20 pb-10 border-t border-white/10 text-gray-400">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <!-- Column 1: Company Info -->
+                <div class="lg:col-span-2">
+                    <div class="font-extrabold text-2xl tracking-tight text-white mb-6">VFD<span
+                            class="text-accent">-</span>IOT <span class="font-light">SMARTLINK</span></div>
+                    <h4 class="text-white font-bold mb-4">CÔNG TY TNHH SMARTLINK TECH</h4>
+                    <p class="mb-6 text-sm leading-relaxed max-w-md">Tiên phong cung cấp các giải pháp IoT công nghiệp,
+                        giúp doanh nghiệp số hóa và tối ưu hóa hệ thống vận hành.</p>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 w-6 text-accent"></i>
+                            <span>Tòa nhà Innovation, Khu Công Nghệ Cao, TP. Thủ Đức, TP. Hồ Chí Minh</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone w-6 text-accent"></i>
+                            <span>1900 1234 56</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope w-6 text-accent"></i>
+                            <span>contact@smartlink-iot.vn</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-globe w-6 text-accent"></i>
+                            <span>www.smartlink-iot.vn</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Column 2: Quick Links -->
+                <div>
+                    <h4 class="text-white font-bold mb-6 uppercase tracking-wider">LIÊN KẾT NHANH</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="vfd_iot_smartlink.html" class="hover:text-accent transition flex items-center"><i
+                                    class="fas fa-angle-right mr-2 text-xs"></i> Trang chủ</a></li>
+                        <li><a href="solution.html" class="hover:text-accent transition flex items-center"><i
+                                    class="fas fa-angle-right mr-2 text-xs"></i> Giải pháp</a></li>
+                        <li><a href="features.html" class="hover:text-accent transition flex items-center"><i
+                                    class="fas fa-angle-right mr-2 text-xs"></i> Tính năng nổi bật</a></li>
+                        <li><a href="projects.html" class="hover:text-accent transition flex items-center"><i
+                                    class="fas fa-angle-right mr-2 text-xs"></i> Dự án tiêu biểu</a></li>
+                        <li><a href="news.html" class="hover:text-accent transition flex items-center"><i
+                                    class="fas fa-angle-right mr-2 text-xs"></i> Tin tức & Sự kiện</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Social Media -->
+                <div>
+                    <h4 class="text-white font-bold mb-6 uppercase tracking-wider">THEO DÕI CHÚNG TÔI</h4>
+                    <p class="text-sm mb-6">Kết nối với chúng tôi qua các nền tảng mạng xã hội.</p>
+                    <div class="flex space-x-4">
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-accent transition transform hover:scale-110">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-accent transition transform hover:scale-110">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-red-600 transition transform hover:scale-110">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 text-sm flex flex-col md:flex-row justify-between items-center">
+                <p>&copy; 2026 SmartLink Tech. All rights reserved.</p>
+                <div class="mt-4 md:mt-0 space-x-6">
+                    <a href="#" class="hover:text-white transition">Chính sách bảo mật</a>
+                    <a href="#" class="hover:text-white transition">Điều khoản sử dụng</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-lg', 'bg-primary');
+                header.classList.remove('bg-primary/95');
+                header.classList.replace('h-20', 'h-16');
+            } else {
+                header.classList.remove('shadow-lg', 'bg-primary');
+                header.classList.add('bg-primary/95');
+                header.classList.replace('h-16', 'h-20');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+    </script>
+</body>
+
+</html>
